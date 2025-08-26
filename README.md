@@ -1,153 +1,154 @@
-# 🧬 DNA — Encrypted Messaging App / Aplicación de Mensajería Encriptada
+🧬 DNA - Enterprise Encrypted Messaging Platform
 
-![DNA Logo](assets/images/dna_logo.png)
 
-> **EN**: **DNA** is a **paranoia-grade secure messaging platform** built with **Flutter** and **end-to-end encryption**, offering **multi-factor authentication**, **biometric access**, and **military-level privacy protocols**.  
-> **ES**: **DNA** es una plataforma de mensajería **hipersegura de nivel paranoico** desarrollada con **Flutter** y cifrado extremo a extremo, con **autenticación multifactor**, **acceso biométrico** y protocolos de privacidad a nivel militar.
 
----
 
-## 🔐 Security System / Sistema de Seguridad
 
-| Feature | Descripción |
-|--------|-------------|
-| ✅ **Triple Factor Authentication** / Autenticación de Triple Factor | Password, fingerprint, face recognition. |
-| ✅ **Emergency Escape Code** / Clave de Emergencia | Triggers fake session (decoy chats). |
-| ✅ **End-to-End Encryption (E2EE)** | Based on Signal Protocol, with per-user key generation. |
-| ✅ **Public & Master Key System** / Sistema de Claves Públicas y Maestras | Enables controlled access & future self-recovery. |
-| ✅ **Biometric Authentication** / Autenticación Biométrica | Face ID / Touch ID fully integrated. |
-| ✅ **Offline Secure Key Storage** / Claves guardadas localmente | Keys never leave the device. |
-| ✅ **Fake Chat Mode** / Modo Chat Falso | Decoy environment if user feels threatened. |
-| ✅ **Intrusion Alerts** / Alertas de Vulnerabilidad | Notifies trusted contacts if breach is suspected. |
 
----
+EN: Enterprise-grade encrypted messaging system with paranoid-level security. Biometric login, decoy chats, vulnerability alerts, and military-grade encryption.
 
-## ✨ Features / Funcionalidades
+ES: Sistema de mensajería encriptada a nivel empresarial con seguridad de grado paranoico. Inicio con biometría, chats señuelo, alertas de vulnerabilidad y cifrado de nivel militar.
 
-- 💬 Real-time secure messaging with encryption.
-- 📞 Voice & video calling (planned).
-- 🖼 Media sharing (photos, audio, video).
-- 🔐 Disappearing messages & secret chats.
-- 👥 Group chats with encrypted moderation.
-- 🟢 Online status & activity presence.
-- 🧠 AI-suggested replies (optional).
-- 📱 Adaptive UI, dark/light themes.
+🔐 Security That Goes Beyond
+Feature	Description
+Triple Factor Authentication	Face Recognition + Fingerprint + Passcode
+Emergency Access Code	Alternate passcode that launches a decoy environment
+Decoy Chats	Fake interface & messages when under threat
+Biometric Lockdown	Face or fingerprint required for critical operations
+Tamper Detection	Alerts when device integrity or SIM is compromised
+Offline Encryption	End-to-end AES-256 + RSA + Salting, even without internet
+Cloud & Local Protection	Double encryption in Firestore + local secure storage
+Zero-Knowledge Architecture	Not even admins can read your messages
 
----
+✨ Features Overview
+🧬 Core Messaging
+End-to-End Encryption
 
-## 🧠 Architecture / Arquitectura
+Chat with Attachments (photos, docs, voice notes)
 
-### Frontend
-| Tech | Uso |
-|------|-----|
-| Flutter + BLoC | State management & UI |
-| GoRouter | Navigation |
-| flutter_screenutil | Responsive layout |
-| formz | Form validation |
-| Firebase Auth | Phone auth with OTP |
+Self-Destructing Messages
 
-### Backend
-| Servicio | Función |
-|---------|---------|
-| Firebase Firestore | Real-time chat DB |
-| Firebase Storage | Encrypted media storage |
-| Firebase Cloud Messaging (FCM) | Push notifications |
-| Cloud Functions | Auth + Security rules |
-| WebSocket (custom) | Live presence system |
-| Signal Protocol | End-to-end encryption engine |
+Biometric Protected Conversations
 
----
+Message Backup & Recovery
 
-## 📁 Project Structure / Estructura del Proyecto
+🕵️‍♂️ Decoy & Intrusion Management
+Emergency Code Entry
 
+Fake Contact Lists & Threads
+
+Intruder Detection with Silent Alerts
+
+Vulnerability Notifications to User
+
+🔐 User Security
+Face & Fingerprint Auth
+
+Passcode & Emergency Access
+
+Security Log History
+
+Session Timeout & Auto-Lock
+
+⚙️ Additional Capabilities
+Push Notifications
+
+Multi-device Sync (coming soon)
+
+Dark Mode
+
+Language Selector (English & Spanish)
+
+🏗️ Project Structure (Clean Architecture)
+pgsql
+Copiar
 dna/
 ├── lib/
-│ ├── core/ # Constants, themes, helpers
-│ ├── data/ # Repositories, services, models
-│ ├── domain/ # Entities and use cases
-│ ├── presentation/ # UI: Screens and Widgets
-│ ├── bloc/ # State management (BLoCs)
-│ └── main.dart # Entry point
-├── assets/
-│ ├── images/
-│ ├── animations/
-│ └── logo_purple.png
-├── pubspec.yaml
-└── README.md
+│   ├── config/           → App initialization, theme, locale, env
+│   ├── core/             → Constants, errors, helpers, encryption
+│   ├── data/             → DTOs, repositories, datasources
+│   ├── domain/           → Entities, repositories, services
+│   ├── infrastructure/   → Firebase, biometric, storage impls
+│   └── presentation/     → UI, Blocs, Screens, Widgets
+📊 Technical Metrics
+Metric	Value
+📄 Dart Files	350+
+🔐 Auth Factors	3
+👥 Roles	1 (User)
+🧱 Layers	5 (Clean)
+📦 Dependencies	40+
+🌐 Offline Ready	Yes
 
+🔧 Dependencies
 yaml
 Copiar
+flutter_bloc: ^9.1.1
+get_it: ^8.0.3
+firebase_auth: ^5.4.2
+cloud_firestore: ^5.6.3
+flutter_secure_storage: ^9.0.0
+local_auth: ^2.1.6
+flutter_local_notifications: ^17.0.0
+encrypt: ^5.0.1
+screen_util: ^5.9.3
+📱 Platform Support
+Feature	iOS	Android
+Face Auth	✅	✅
+Fingerprint	✅	✅
+Secure Storage	✅	✅
+Emergency Code	✅	✅
+Local Notifications	✅	✅
 
----
+🔐 Security Workflow
+User Launches App
 
-## ⚙️ Dependencies / Dependencias
+Biometric Verification
 
-```yaml
-dependencies:
-  flutter_bloc: ^9.1.1
-  equatable: ^2.0.7
-  go_router: ^16.0.0
-  formz: ^0.8.0
-  firebase_core: ^4.0.0
-  firebase_auth: ^6.0.0
-  cloud_firestore: ^6.0.0
-  firebase_storage: ^13.0.0
-  firebase_messaging: ^16.0.0
-  encrypt: ^5.0.3
-  pointycastle: ^4.0.0
-  flutter_secure_storage: ^9.2.4
-  flutter_screenutil: ^5.9.3
-  lottie: ^3.3.1
-  cached_network_image: ^3.4.1
-  intl: ^0.20.2
-  image_picker: ^1.1.2
-  just_audio: ^0.10.4
-  record: ^6.0.0
-  video_player: ^2.10.0
-🚀 Getting Started / Primeros Pasos
-Prerequisites
-Flutter 3.22+
+Passcode Auth
 
-Dart 3.4+
+Optional Emergency Code (if under threat)
 
-Firebase CLI
+Access to Real or Decoy Environment
 
-Installation
-bash
-Copiar
-git clone https://github.com/Dev-Studio-Ec/dna.git
-cd dna
-flutter pub get
-firebase init
-flutter run
-🧪 Roadmap
-Estado	Tarea
-✅	Project scaffolding with Clean Architecture
-✅	Phone authentication with Firebase
-✅	Biometric + emergency code auth
-✅	E2EE Signal Protocol integration
-⏳	Real-time messaging w/ media
-⏳	Decoy chats + intrusion alerts
-🔜	Secure voice/video calls
-🔜	Group chat with roles
-🔜	Desktop and web support
+All Messages Encrypted Locally & Remotely
 
-🖌 UI/UX Philosophy
-🖤 Dark-first elegant design
+Auto Logout on Inactivity
 
-🧩 Modular widget system
+🚧 Roadmap
+Feature	Status
+Biometric Login	✅ Completed
+Decoy Chats	✅ Completed
+Offline Encryption	✅ Completed
+Push Notifications	✅ Completed
+Multi-device Sync	🚧 In Dev
+End-to-End Encryption	✅ Completed
+Secure Message Recovery	🚧 Planned
+Intruder Selfie Detection	🧪 Testing
 
-📱 Fully responsive across devices
+👨‍💻 Credits
+Role	Name
+Lead Developer	Ing. Sergio Ron
+Organization	Dev Studio EC
+Design & UX	Sergio Ron & Team
+Security Lead	Sergio Ron
 
-✨ Micro-interactions & smooth animations
+📄 License
+MIT License – see LICENSE file.
 
-🎯 Clean, minimalist layout hierarchy
+🌐 Contact
+Channel	Info
+Email	sron@dev-studio.tech
+GitHub	Dev-Studio-Ec
+WhatsApp	(+593) 983748341
 
-📜 License / Licencia
-MIT License
-This project is licensed under the MIT License. See LICENSE for more details.
+🇪🇸 Versión en Español
+Si deseas leer este README completamente en español, desplázate hacia README_ES.md (próximamente se incluirá como archivo separado).
+O bien puedes traducir esta página directamente desde GitHub con un clic derecho → “Traducir al español”.
 
-🙌 Credits / Créditos
-Developed with ❤️ by:
-Ing. Sergio Ron
-Dev Studio — Ecuador
+💡 Disclaimer
+This app is under active development. Security protocols are extremely strict and might block access in non-compliant devices (rooted/jailbroken, emulators, custom ROMs). Please test in production devices.
+
+🙌 Built with Paranoia, Dart & Flutter
+“If you're not paranoid, you're not paying attention.”
+— Sergio Ron
+
