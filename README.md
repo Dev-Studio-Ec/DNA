@@ -60,402 +60,94 @@
 
 ---
 
-### 🔐 **Sistema de Autenticación Multi-Modal**
-- **Multi-Auth**: Email/Password, Phone SMS, Google Sign-In, Apple Sign-In
-- **Session Management**: Token refresh automático, logout seguro
-- **Social Linking**: Vinculación de cuentas múltiples
-- **Password Management**: Recuperación, cambio seguro con re-autenticación
+## 📁 Project Structure / Estructura del Proyecto
 
-### 🏗️ **Arquitectura Enterprise**
-- **Clean Architecture**: Separación clara de capas Data/Domain/Presentation
-- **BLoC Pattern**: State management robusto y predecible
-- **Dependency Injection**: GetIt con setup modular y testeable
-- **SOLID Principles**: Código mantenible y escalable
-
-## 🏗️ Arquitectura del Proyecto
-
-```
+DNA
 lib/
-├── core/
-│   ├── base/
-│   │   ├── base_datasource.dart
-│   │   ├── base_entity.dart
-│   │   ├── base_repository.dart
-│   │   └── base_usecase.dart
-│   ├── config/
-│   │   ├── app_config.dart
-│   │   ├── image/
-│   │   │   ├── image_config.dart
-│   │   │   └── image_upload_result.dart
-│   │   ├── storage/
-│   │   │   └── storage_paths.dart
-│   │   ├── theme/
-│   │   │   ├── app_colors.dart
-│   │   │   ├── app_dimensions.dart
-│   │   │   ├── app_text_styles.dart
-│   │   │   ├── app_theme.dart
-│   │   │   └── vegfarm_theme.dart
-│   │   └── validations/
-│   │       └── validation_result.dart
-│   ├── constants/
-│   │   ├── api_constants.dart
-│   │   ├── assets_paths.dart
-│   │   └── firebase_constants.dart
-│   ├── di/
-│   │   ├── dependency_injection.dart
-│   │   └── service_locator.dart
-│   ├── error/
+├── core
+│   ├── constants
+│   │   └── local_storage_keys.dart
+│   ├── dna_core.dart
+│   ├── errors
 │   │   ├── error_handler.dart
 │   │   ├── error_mapper.dart
 │   │   ├── exceptions.dart
-│   │   ├── failures.dart
-│   │   └── pharmaceutical_exceptions.dart
-│   ├── network/
-│   │   ├── api_endpoints.dart
-│   │   ├── base_api_service.dart
-│   │   ├── dio_client.dart
-│   │   ├── interceptors/
-│   │   │   ├── auth_interceptor.dart
-│   │   │   ├── error_interceptor.dart
-│   │   │   └── logging_interceptor.dart
-│   │   └── network_info.dart
-│   ├── router/
+│   │   └── failures.dart
+│   ├── router
 │   │   ├── app_router.dart
-│   │   ├── navigation_service.dart
-│   │   ├── route_observer.dart
-│   │   └── route_paths.dart
-│   ├── security/
-│   │   ├── biometric_service.dart
-│   │   ├── encryption_service.dart
-│   │   ├── security_utils.dart
-│   │   └── token_manager.dart
-│   ├── services/
-│   │   ├── analytics_service.dart
-│   │   ├── cache_service.dart
-│   │   ├── environment_service.dart
-│   │   ├── firebase_firestore_service.dart
-│   │   ├── firebase_storage_service.dart
-│   │   ├── image_service.dart
-│   │   ├── image_upload_service.dart
-│   │   ├── logger_service.dart
-│   │   ├── notification_service.dart
-│   │   ├── onboarding_service.dart
-│   │   ├── storage_service.dart
-│   │   └── vegfarm_core_services.dart
-│   ├── utils/
-│   │   ├── enums/
-│   │   │   ├── app_environment.dart
-│   │   │   ├── platform_type.dart
-│   │   │   └── user_role.dart
-│   │   ├── extensions/
-│   │   │   ├── datetime_extensions.dart
-│   │   │   ├── num_extensions.dart
-│   │   │   └── string_extensions.dart
-│   │   ├── formatters.dart
-│   │   ├── helpers/
-│   │   │   ├── currency_helper.dart
-│   │   │   ├── date_helper.dart
-│   │   │   └── image_helper.dart
-│   │   └── validators.dart
-│   └── vegfarm_core.dart
-├── data/
-│   └── services/
-│       ├── firebase_storage_service_impl.dart
-│       ├── image_service_impl.dart
-│       ├── image_upload_service_impl.dart
-│       ├── products_service.dart
-│       └── vegfarm_services_impl.dart
-├── dev/
-│   ├── firestore_loader.dart
-│   └── structure.md
-├── domain/
-│   └── entities/
-│       ├── category_entity.dart
-│       ├── offer_entity.dart
-│       ├── product_entity.dart
-│       ├── review_entity.dart
-│       ├── user_role_entity.dart
-│       └── vegfarm_entities.dart
-├── features/
-│   ├── auth/
-│   │   ├── data/
-│   │   │   ├── datasources_impl/
-│   │   │   │   ├── auth_local_datasource_impl.dart
-│   │   │   │   ├── auth_remote_datasource_impl.dart
-│   │   │   │   └── social_auth_datasource_impl.dart
-│   │   │   ├── models/
-│   │   │   │   ├── auth_response_model.dart
-│   │   │   │   ├── authorization_info.dart
-│   │   │   │   ├── social_auth_model.dart
-│   │   │   │   └── user_model.dart
-│   │   │   └── repositories/
-│   │   │       └── auth_repository_impl.dart
-│   │   ├── domain/
-│   │   │   ├── datasources/
-│   │   │   │   ├── auth_local_datasource.dart
-│   │   │   │   ├── auth_remote_datasource.dart
-│   │   │   │   └── social_auth_datasource.dart
-│   │   │   ├── entities/
-│   │   │   │   ├── auth_session_entity.dart
-│   │   │   │   ├── social_auth_entity.dart
-│   │   │   │   └── user_entity.dart
-│   │   │   ├── enums/
-│   │   │   │   ├── app_permission.dart
-│   │   │   │   ├── auth_enums.dart
-│   │   │   │   └── image_enums.dart
-│   │   │   ├── repositories/
-│   │   │   │   └── auth_repository.dart
-│   │   │   ├── services/
-│   │   │   │   ├── auth_service.dart
-│   │   │   │   ├── authorization_service.dart
-│   │   │   │   ├── permission_service.dart
-│   │   │   │   └── role_service.dart
-│   │   │   └── usecases/
-│   │   │       ├── change_password_usecase.dart
-│   │   │       ├── check_auth_status_usecase.dart
-│   │   │       ├── forgot_password_usecase.dart
-│   │   │       ├── get_current_user_usecase.dart
-│   │   │       ├── login_with_apple_usecase.dart
-│   │   │       ├── login_with_email_usecase.dart
-│   │   │       ├── login_with_google_usecase.dart
-│   │   │       ├── login_with_phone_usecase.dart
-│   │   │       ├── logout_usecase.dart
-│   │   │       ├── refresh_token_usecase.dart
-│   │   │       ├── register_usecase.dart
-│   │   │       ├── resend_phone_verification_usecase.dart
-│   │   │       ├── send_phone_verification_usecase.dart
-│   │   │       ├── update_email_usecase.dart
-│   │   │       ├── update_profile_usecase.dart
-│   │   │       ├── verify_email_usecase.dart
-│   │   │       └── verify_phone_code_usecase.dart
-│   │   ├── presentation/
-│   │   │   ├── bloc/
-│   │   │   │   ├── auth_bloc.dart
-│   │   │   │   ├── auth_event.dart
-│   │   │   │   └── auth_state.dart
-│   │   │   ├── screens/
-│   │   │   │   ├── dashboard_screen.dart
-│   │   │   │   ├── error_screen.dart
-│   │   │   │   ├── forgot_password_screen.dart
-│   │   │   │   ├── login_screen.dart
-│   │   │   │   ├── phone_verification_screen.dart
-│   │   │   │   ├── register_screen.dart
-│   │   │   │   ├── scaffold_with_nav_bar.dart
-│   │   │   │   └── vegfarm_auth_screens.dart
-│   │   │   └── widgets/
-│   │   │       └── auth/
-│   │   │           ├── authenticated_builder.dart
-│   │   │           ├── conditional_access_builder.dart
-│   │   │           ├── permission_builder.dart
-│   │   │           └── role_builder.dart
-│   │   └── vegfarm_auth_features.dart
-│   ├── favorites/
-│   │   └── presentation/
-│   │       ├── screens/
-│   │       └── widgets/
-│   ├── home/
-│   │   └── presentation/
-│   │       ├── screens/
-│   │       └── widgets/
-│   ├── orders/
-│   │   └── presentation/
-│   │       ├── screens/
-│   │       └── widgets/
-│   ├── products/
-│   │   ├── data/
-│   │   │   ├── datasources/
-│   │   │   │   ├── firebase_products_remote_datasource.dart
-│   │   │   │   ├── products_datasource_factory.dart
-│   │   │   │   ├── shared_prefs_products_local_datasource.dart
-│   │   │   │   └── vegfarm_product_datasources_impl.dart
-│   │   │   ├── models/
-│   │   │   │   ├── cart_action_result.dart
-│   │   │   │   ├── favorite_action_result.dart
-│   │   │   │   ├── pharmaceutical_product_metrics.dart
-│   │   │   │   ├── pharmaceutical_search_result.dart
-│   │   │   │   ├── product_detail_data.dart
-│   │   │   │   ├── product_validation_result.dart
-│   │   │   │   └── share_action_result.dart
-│   │   │   └── repositories/
-│   │   │       └── products_repository_impl.dart
-│   │   ├── domain/
-│   │   │   ├── datasources/
-│   │   │   │   ├── products_local_datasource.dart
-│   │   │   │   ├── products_remote_datasource.dart
-│   │   │   │   └── vegfarm_product_datasources.dart
-│   │   │   ├── enums/
-│   │   │   │   └── product_enums.dart
-│   │   │   ├── repositories/
-│   │   │   │   └── products_repository.dart
-│   │   │   └── usecases/
-│   │   │       └── get_product_details_usecase.dart
-│   │   ├── presentation/
-│   │   │   ├── bloc/
-│   │   │   │   └── product_bloc/
-│   │   │   │       ├── product_bloc.dart
-│   │   │   │       ├── product_event.dart
-│   │   │   │       └── product_state.dart
-│   │   │   └── widgets/
-│   │   └── products_feature.dart
-│   ├── profile/
-│   │   └── presentation/
-│   │       ├── screens/
-│   │       └── widgets/
-│   └── search/
+│   │   ├── app_routes.dart
+│   │   ├── dna_router_system.dart
+│   │   ├── go_router_observer.dart
+│   │   └── navigation_service.dart
+│   ├── theme
+│   │   ├── app_theme.dart
+│   │   └── palette.dart
+│   └── utils
+│       ├── crypto_utils.dart
+│       ├── dependency_injection.dart
+│       ├── logger.dart
+│       └── utils.dart
+├── data
+│   ├── datasources
+│   ├── models
+│   │   └── dna_user_model.dart
+│   ├── repositories
+│   │   ├── auth_repository_impl.dart
+│   │   ├── dna_repositories_impl.dart
+│   │   └── user_repository_impl.dart
+│   └── services
+│       ├── auth
+│       │   └── firebase_auth_service_impl.dart
+│       ├── dna_services_impl.dart
+│       ├── firestore
+│       │   └── firebase_firestore_service.dart
+│       ├── storage
+│       │   └── local_storage_service_impl.dart
+│       └── user
+│           └── user_service_impl.dart
+├── domain
+│   ├── entities
+│   │   ├── dna_entities.dart
+│   │   └── dna_user_entity.dart
+│   ├── repositories
+│   │   ├── auth_repository.dart
+│   │   ├── dna_repositories.dart
+│   │   └── user_repository.dart
+│   ├── services
+│   │   ├── auth_service.dart
+│   │   ├── dna_services.dart
+│   │   ├── local_storage_service.dart
+│   │   └── user_service.dart
+│   └── usecases
 ├── firebase_options.dart
 ├── main.dart
-└── shared/
-    ├── data/
-    │   ├── datasources/
-    │   │   ├── base_local_datasource.dart
-    │   │   └── base_remote_datasource.dart
-    │   ├── models/
-    │   │   ├── api_response_model.dart
-    │   │   ├── error_response_model.dart
-    │   │   └── pagination_model.dart
-    │   ├── services/
-    │   │   └── onboarding_service_impl.dart
-    │   └── vegfarm_data.dart
-    ├── domain/
-    │   ├── entities/
-    │   │   ├── base_entity.dart
-    │   │   └── onboarding_status_entity.dart
-    │   ├── enums/
-    │   │   └── vegfarm_enums.dart
-    │   ├── value_objects/
-    │   │   ├── email.dart
-    │   │   ├── password.dart
-    │   │   └── phone_number.dart
-    │   └── vegfarm_domain.dart
-    └── presentation/
-        ├── blocs/
-        │   ├── observer_bloc/
-        │   │   └── simple_bloc_observer.dart
-        │   └── vegfarm_blocs.dart
-        ├── modules/
-        │   ├── accountant/
-        │   │   └── accountant_dashboard_screen.dart
-        │   ├── admin/
-        │   │   └── screens/
-        │   │       └── admin_dashboard_screen.dart
-        │   ├── client/
-        │   │   └── screens/
-        │   │       ├── account/
-        │   │       │   └── profile_screen.dart
-        │   │       ├── favorites/
-        │   │       │   └── favorites_screen.dart
-        │   │       ├── home/
-        │   │       │   ├── components/
-        │   │       │   │   ├── home_categories_section.dart
-        │   │       │   │   ├── home_components.dart
-        │   │       │   │   ├── home_footer.dart
-        │   │       │   │   ├── home_header.dart
-        │   │       │   │   ├── home_offers_section.dart
-        │   │       │   │   ├── home_products_grid.dart
-        │   │       │   │   └── home_search_bar.dart
-        │   │       │   └── home_screen.dart
-        │   │       ├── main_layout_screen.dart
-        │   │       ├── orders/
-        │   │       │   └── orders_screen.dart
-        │   │       ├── product/
-        │   │       │   ├── components/
-        │   │       │   │   ├── product_action_buttons.dart
-        │   │       │   │   ├── product_basic_info.dart
-        │   │       │   │   ├── product_components.dart
-        │   │       │   │   ├── product_detail_app_bar.dart
-        │   │       │   │   ├── product_image_gallery.dart
-        │   │       │   │   ├── product_pharmaceutical_info.dart
-        │   │       │   │   ├── product_reviews.dart
-        │   │       │   │   └── product_technical_specs.dart
-        │   │       │   ├── components_old/
-        │   │       │   │   ├── product_action_buttons.dart
-        │   │       │   │   ├── product_basic_info.dart
-        │   │       │   │   ├── product_components.dart
-        │   │       │   │   ├── product_image_gallery.dart
-        │   │       │   │   ├── product_pharmaceutical_info.dart
-        │   │       │   │   ├── product_reviews.dart
-        │   │       │   │   └── product_technical_specs.dart
-        │   │       │   └── product_detail_screen.dart
-        │   │       ├── profile/
-        │   │       │   └── profile_screen.dart
-        │   │       └── search/
-        │   │           └── search_screen.dart
-        │   ├── seller/
-        │   │   └── screens/
-        │   │       └── seller_dashboard_screen.dart
-        │   └── shared/
-        │       └── screens/
-        │           ├── error/
-        │           │   └── vegfarm_error_app.dart
-        │           ├── onboarding/
-        │           │   ├── components/
-        │           │   │   ├── onboarding_components.dart
-        │           │   │   ├── onboarding_header.dart
-        │           │   │   ├── onboarding_navigation_buttons.dart
-        │           │   │   ├── onboarding_progress_indicator.dart
-        │           │   │   ├── onboarding_step1_profile_image.dart
-        │           │   │   ├── onboarding_step2_personal_info.dart
-        │           │   │   └── onboarding_step3_complete.dart
-        │           │   └── onboarding_screen.dart
-        │           ├── products/
-        │           │   ├── product_details_screen.dart
-        │           │   └── products_catalog_screen.dart
-        │           └── start/
-        │               ├── splash_animated_content.dart
-        │               ├── splash_animation_controller.dart
-        │               ├── splash_background.dart
-        │               ├── splash_components.dart
-        │               ├── splash_constants.dart
-        │               ├── splash_content.dart
-        │               ├── splash_debug.dart
-        │               ├── splash_logos.dart
-        │               └── splash_screen.dart
-        ├── vegfarm_modules_screens.dart
-        └── widgets/
-            ├── animations/
-            │   ├── fade_in_animation.dart
-            │   ├── loading_animations.dart
-            │   └── slide_animation.dart
-            ├── backgrounds/
-            │   └── animated_login_background.dart
-            ├── buttons/
-            │   ├── custom_elevated_button.dart
-            │   ├── custom_outlined_button.dart
-            │   ├── floating_action_button.dart
-            │   ├── premium_button.dart
-            │   ├── premium_social_button.dart
-            │   └── premium_text_button.dart
-            ├── feedback/
-            │   ├── empty_state_widget.dart
-            │   ├── error_widget.dart
-            │   ├── loading_widget.dart
-            │   └── shimmer_loading.dart
-            ├── inputs/
-            │   ├── custom_dropdown.dart
-            │   ├── custom_search_field.dart
-            │   ├── custom_text_field.dart
-            │   ├── phone_input_field.dart
-            │   └── premium_input_field.dart
-            ├── layouts/
-            │   ├── adaptive_scaffold.dart
-            │   ├── responsive_layout.dart
-            │   └── scaffold_with_nav.dart
-            ├── media/
-            │   ├── avatar_widget.dart
-            │   ├── cached_image.dart
-            │   └── image_picker_widget.dart
-            ├── navigation/
-            │   ├── app_drawer.dart
-            │   ├── bottom_nav_bar.dart
-            │   └── breadcrumb_nav.dart
-            ├── theme/
-            │   ├── app_theme.dart
-            │   ├── color_schemes.dart
-            │   ├── component_themes.dart
-            │   ├── dimensions.dart
-            │   ├── responsive_breakpoints.dart
-            │   └── text_themes.dart
-            └── vegfarm_widgets.dart
+└── presentation
+    ├── blocs
+    │   ├── auth
+    │   ├── chat
+    │   └── theme
+    ├── screens
+    │   ├── auth
+    │   │   └── login_screen.dart
+    │   ├── chat
+    │   │   └── chat_screen.dart
+    │   ├── dna_screens.dart
+    │   ├── error
+    │   │   └── error_screen.dart
+    │   ├── home
+    │   │   └── home_screen.dart
+    │   └── start
+    │       └── splash_screen.dart
+    └── widgets
+        ├── dna_widgets.dart
+        └── shared
+            ├── dna_app_bar.dart
+            ├── dna_background.dart
+            └── dna_bottom_nav.dart
+
+34 directories, 47 files
+---
+
 ```
 
 ## 📊 Métricas de Arquitectura
