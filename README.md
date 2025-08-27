@@ -38,11 +38,27 @@
 ---
 
 ## 🧠 Architecture / Arquitectura
-- **Propiedades Farmacéuticas**: Principio activo, concentración, forma farmacéutica, nivel de control
-- **Compliance Integrado**: Validaciones automáticas para productos controlados y prescripciones
-- **Gestión de Inventario**: Stock, alertas de vencimiento, condiciones de almacenamiento
-- **Información Técnica**: Lote, registro sanitario, especificaciones farmacológicas completas
-- **Métodos Calculados**: Precios con descuentos, estado de stock, validaciones de compliance
+
+### Frontend
+| Tech | Uso |
+|------|-----|
+| Flutter + BLoC | State management & UI |
+| GoRouter | Navigation |
+| flutter_screenutil | Responsive layout |
+| formz | Form validation |
+| Firebase Auth | Phone auth with OTP |
+
+### Backend
+| Servicio | Función |
+|---------|---------|
+| Firebase Firestore | Real-time chat DB |
+| Firebase Storage | Encrypted media storage |
+| Firebase Cloud Messaging (FCM) | Push notifications |
+| Cloud Functions | Auth + Security rules |
+| WebSocket (custom) | Live presence system |
+| Signal Protocol | End-to-end encryption engine |
+
+---
 
 ### 🔐 **Sistema de Autenticación Multi-Modal**
 - **Multi-Auth**: Email/Password, Phone SMS, Google Sign-In, Apple Sign-In
