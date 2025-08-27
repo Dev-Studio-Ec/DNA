@@ -37,7 +37,7 @@
 
 ---
 
-## 🧠 **Architecture / Arquitectura**
+## 🧠 Architecture / Arquitectura
 - **Propiedades Farmacéuticas**: Principio activo, concentración, forma farmacéutica, nivel de control
 - **Compliance Integrado**: Validaciones automáticas para productos controlados y prescripciones
 - **Gestión de Inventario**: Stock, alertas de vencimiento, condiciones de almacenamiento
