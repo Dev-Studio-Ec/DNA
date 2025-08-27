@@ -258,35 +258,6 @@ class ProductsDataSourceFactory {
 - Google Sign-In configurado (iOS/Android)
 - Apple Sign-In configurado (iOS)
 
-### Instalación
-
-1. **Clonar el repositorio**
-   ```bash
-   git clone https://github.com/Ivanhoe160676/Vegfarm.git
-   cd vegfarm
-   ```
-
-2. **Instalar dependencias**
-   ```bash
-   flutter pub get
-   ```
-
-3. **Configurar Firebase**
-   ```bash
-   # Agregar google-services.json (Android)
-   # Agregar GoogleService-Info.plist (iOS)
-   ```
-
-4. **Configurar variables de entorno**
-   ```bash
-   cp .env.example .env
-   # Editar .env con tus configuraciones
-   ```
-
-5. **Ejecutar la aplicación**
-   ```bash
-   flutter run
-   ```
 
 ## 📦 Dependencias Principales
 
@@ -370,66 +341,6 @@ enum AppPermission {
 
 ## 👥 Sistema RBAC Avanzado
 
-### Control de Acceso Granular
-
-El sistema implementa Role-Based Access Control con 5 roles jerárquicos y 18 permisos específicos, proporcionando control granular sobre funcionalidades y datos.
-
-**Jerarquía de Roles**:
-- **Viewer**: Acceso de solo lectura a productos básicos
-- **Seller**: Ventas + acceso a productos con prescripción
-- **Accountant**: Reportes financieros + métricas de compliance
-- **Admin**: Gestión completa de productos y usuarios
-- **SuperAdmin**: Control total del sistema + configuraciones críticas
-
-**Authorization Service** - Validación centralizada de permisos:
-```dart
-@RequirePermissions([Permission.viewControlledProducts])
-Future<List<Product>> getControlledProducts() async {
-  // Método automáticamente protegido por el sistema RBAC
-}
-```
-
-**Widgets Condicionales** - UI que se adapta según permisos:
-```dart
-PermissionBuilder(
-  permission: Permission.createProducts,
-  builder: (context) => CreateProductButton(),
-  fallback: EmptyWidget(),
-)
-```
-
-## 💊 ProductEntity Farmacéutica
-
-### Entidad Especializada para el Sector Farmacéutico
-
-La `ProductEntity` está diseñada específicamente para manejar productos farmacéuticos con todas las regulaciones y especificaciones del sector.
-
-**Propiedades Farmacéuticas Especializadas**:
-- Principio activo, concentración, forma farmacéutica
-- Nivel de control (OTC, Prescripción, Controlado, Hospitalario)
-- Información farmacológica completa (indicaciones, contraindicaciones, posología)
-- Especificaciones técnicas (registro sanitario, lote, pH, vida útil)
-- Condiciones de almacenamiento y cadena de frío
-
-**Métodos Calculados Inteligentes**:
-```dart
-// Validaciones automáticas
-bool get isNearExpiration; // Productos próximos a vencer
-bool get isLowStock; // Alertas de stock bajo
-bool get hasCompletePharmacologicalInfo; // Validación de información
-
-// Cálculos de precios
-double get finalPrice; // Precio con descuentos aplicados
-double get priceWithTax; // Precio con impuestos incluidos
-```
-
-**Integración con Firestore**:
-```dart
-// Conversión automática desde/hacia Firestore
-factory ProductEntity.fromFirestore(Map<String, dynamic> data, String documentId);
-Map<String, dynamic> toFirestore();
-```
-
 ## 🧪 Testing
 
 ```bash
@@ -443,16 +354,6 @@ flutter test integration_test/
 flutter test --coverage
 ```
 
-## 📱 Funcionalidades por Rol
-
-|       Feature       | Viewer | Seller | Accountant | Admin | SuperAdmin |
-|---------------------|:------:|:------:|:----------:|:-----:|:----------:|
-| Ver Productos       |   ✅   |   ✅   |     ✅     |  ✅   |     ✅    |
-| Crear Órdenes       |   ❌   |   ✅   |     ✅     |  ✅   |     ✅    |
-| Ver Reportes        |   ❌   |   ❌   |     ✅     |  ✅   |     ✅    |
-| Gestionar Productos |   ❌   |   ❌   |     ❌     |  ✅   |     ✅    |
-| Gestionar Usuarios  |   ❌   |   ❌   |     ❌     |  ✅   |     ✅    |
-| Eliminar Datos      |   ❌   |   ❌   |     ❌     |  ❌   |     ✅    |
 
 ## 🛠️ Scripts de Desarrollo
 
@@ -499,18 +400,6 @@ Este proyecto está bajo la Licencia MIT. Ver [LICENSE](LICENSE) para más detal
 - [x] Navigation con route guards
 - [x] Error handling robusto
 
-### 🔄 **En Desarrollo (v1.1)**
-- [ ] Theme system Material 3
-- [ ] Shared widgets library
-- [ ] Products feature (CRUD)
-- [ ] Dashboard con métricas reales
-
-### 📋 **Planeado (v1.2+)**
-- [ ] Orders management system
-- [ ] Reports & analytics
-- [ ] Push notifications
-- [ ] Offline-first architecture
-- [ ] Multi-tenant support
 
 ## 📊 Métricas del Proyecto
 
@@ -534,6 +423,6 @@ Este proyecto está bajo la Licencia MIT. Ver [LICENSE](LICENSE) para más detal
 ---
 
 <div align="center">
-  <p>Hecho con ❤️ y Flutter</p>
-  <p>© 2025 VegFarm. Todos los derechos reservados.</p>
+  <p>Hecho con Flutter</p>
+  <p>© 2025 DNA. Todos los derechos reservados.</p>
 </div>
