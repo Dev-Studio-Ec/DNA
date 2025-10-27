@@ -63,9 +63,10 @@
 ## 📁 Project Structure / Estructura del Proyecto
 
 DNA
-lib/
+lib
 ├── core
 │   ├── constants
+│   │   ├── app_assets.dart
 │   │   └── local_storage_keys.dart
 │   ├── dna_core.dart
 │   ├── errors
@@ -73,6 +74,10 @@ lib/
 │   │   ├── error_mapper.dart
 │   │   ├── exceptions.dart
 │   │   └── failures.dart
+│   ├── l10n
+│   │   └── app_localizations.dart
+│   ├── notifications
+│   │   └── push_handlers.dart
 │   ├── router
 │   │   ├── app_router.dart
 │   │   ├── app_routes.dart
@@ -80,8 +85,12 @@ lib/
 │   │   ├── go_router_observer.dart
 │   │   └── navigation_service.dart
 │   ├── theme
+│   │   ├── app_colors.dart
+│   │   ├── app_dimensions.dart
+│   │   ├── app_palette.dart
+│   │   ├── app_text_styles.dart
 │   │   ├── app_theme.dart
-│   │   └── palette.dart
+│   │   └── dna_theme.dart
 │   └── utils
 │       ├── crypto_utils.dart
 │       ├── dependency_injection.dart
@@ -98,9 +107,16 @@ lib/
 │   └── services
 │       ├── auth
 │       │   └── firebase_auth_service_impl.dart
+│       ├── connectivity
+│       │   └── connectivity_service_impl.dart
 │       ├── dna_services_impl.dart
 │       ├── firestore
 │       │   └── firebase_firestore_service.dart
+│       ├── notifications
+│       │   ├── firebase_messaging_service_impl.dart
+│       │   └── local_notifications_service_impl.dart
+│       ├── security
+│       │   └── biometrics_service_impl.dart
 │       ├── storage
 │       │   └── local_storage_service_impl.dart
 │       └── user
@@ -115,11 +131,22 @@ lib/
 │   │   └── user_repository.dart
 │   ├── services
 │   │   ├── auth_service.dart
+│   │   ├── biometrics_service.dart
+│   │   ├── connectivity_service.dart
 │   │   ├── dna_services.dart
+│   │   ├── local_notifications_service.dart
 │   │   ├── local_storage_service.dart
+│   │   ├── push_service.dart
 │   │   └── user_service.dart
 │   └── usecases
 ├── firebase_options.dart
+├── l10n
+│   ├── app_en.arb
+│   ├── app_es.arb
+│   └── generated
+│       ├── app_localizations.dart
+│       ├── app_localizations_en.dart
+│       └── app_localizations_es.dart
 ├── main.dart
 └── presentation
     ├── blocs
@@ -128,24 +155,41 @@ lib/
     │   └── theme
     ├── screens
     │   ├── auth
-    │   │   └── login_screen.dart
+    │   │   ├── login_screen.dart
+    │   │   ├── register_phone_screen.dart
+    │   │   └── sms_verification_screen.dart
     │   ├── chat
     │   │   └── chat_screen.dart
+    │   ├── dev
+    │   │   └── kitchen_sink_screen.dart
     │   ├── dna_screens.dart
     │   ├── error
     │   │   └── error_screen.dart
     │   ├── home
     │   │   └── home_screen.dart
+    │   ├── profile
+    │   │   └── profile_screen.dart
+    │   ├── security
+    │   │   ├── change_pin_screen.dart
+    │   │   └── lock_screen.dart
+    │   ├── settings
+    │   │   └── settings_screen.dart
     │   └── start
+    │       ├── onboarding_screen.dart
     │       └── splash_screen.dart
     └── widgets
+        ├── app_lifecycle_watcher.dart
+        ├── connectivity_banner.dart
         ├── dna_widgets.dart
         └── shared
             ├── dna_app_bar.dart
             ├── dna_background.dart
-            └── dna_bottom_nav.dart
+            ├── dna_bottom_nav.dart
+            ├── dna_button.dart
+            ├── dna_card.dart
+            └── dna_text_field.dart
 
-34 directories, 47 files
+45 directories, 80 files
 ---
 
 ```
